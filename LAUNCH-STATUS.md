@@ -16,7 +16,7 @@
 
 | Item | Actual status |
 | --- | --- |
-| Netlify project and temporary URL | Not created; Netlify currently displays its sign-in screen |
+| Netlify project and temporary URL | Netlify account sign-in succeeded; project import is waiting for GitHub / Google device approval |
 | Public deployment | Not deployed or verified |
 | Contact storage and Gmail delivery | Prepared in code; form detection and notification not configured, live workflow not tested |
 | Custom domain binding | Not configured |
@@ -45,6 +45,6 @@ Do not enter a guessed Netlify hostname. Remove only conflicting apex/www forwar
 
 ## Next action
 
-Authenticate to Netlify using the secure browser sign-in flow. The account must be able to deploy the Vendrick GitHub repository. Netlify's current notification rules require `vendricksystems@gmail.com` to be an active team member address on non-enterprise plans. Do not purchase a team seat; resolve that requirement with a free account configuration if needed.
+Netlify authentication succeeded. Complete Google’s device approval for the GitHub repository import in the pending secure browser sign-in flow. The account must be able to deploy the Vendrick GitHub repository. Netlify's current notification rules require `vendricksystems@gmail.com` to be an active team member address on non-enterprise plans. Do not purchase a team seat; resolve that requirement with a free account configuration if needed.
 
 Once access is available: create a separate project, deploy, enable form detection, configure Gmail notifications, enable the form flag and test actual stored submission plus inbox receipt, then connect DNS and verify HTTPS/redirects. Only then enable production indexing.
