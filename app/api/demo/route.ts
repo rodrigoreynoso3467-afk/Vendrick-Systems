@@ -1,0 +1,1 @@
+import {sampleRows,cleanSample,sampleCSV} from '@/lib/demo';export function GET(){return new Response(sampleCSV(cleanSample(sampleRows).accepted),{headers:{'Content-Type':'text/csv; charset=utf-8','Content-Disposition':'attachment; filename="vendrick-fictional-sample-cleaned.csv"','Cache-Control':'no-store','X-Content-Type-Options':'nosniff'}});}

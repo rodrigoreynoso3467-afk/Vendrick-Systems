@@ -1,0 +1,29 @@
+[build]
+  command = "npm run build"
+  publish = ".next"
+
+[build.environment]
+  NODE_VERSION = "22"
+  NEXT_TELEMETRY_DISABLED = "1"
+  SITE_URL = "https://vendricksystems.com"
+
+# Netlify automatically installs its current OpenNext adapter for Next.js.
+# Keep previews out of search indexes. Turn both flags on in production only
+# after form detection, notification delivery, and domain ownership are verified.
+[context.deploy-preview.environment]
+  SITE_INDEXABLE = "false"
+
+[context.branch-deploy.environment]
+  SITE_INDEXABLE = "false"
+
+[[redirects]]
+  from = "https://www.vendricksystems.com/*"
+  to = "https://vendricksystems.com/:splat"
+  status = 301
+  force = true
+
+[[headers]]
+  for = "/__forms.html"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow"
+    Cache-Control = "no-store"
