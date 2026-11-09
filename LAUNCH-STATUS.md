@@ -1,50 +1,32 @@
-# Vendrick Systems launch status — November 8, 2026
+# Vendrick Systems launch status — November 9, 2026
 
-## Verified
+Live URL: https://vendricksystems.com/
+Netlify project: vendrick-systems (separate from Agua Blue)
+Source: https://github.com/rodrigoreynoso3467-afk/Vendrick-Systems
 
-- Latest approved landing page and all existing company/services/demo pages preserved from review source `2818f89e13d60a3732a67723c33557fbb9b431cc`.
-- Standard Next.js 16.4.5 project prepared for Netlify; Cloudflare-only hosting and unused starter dependencies excluded.
-- Production build and TypeScript checks passed. ESLint passed without warnings after replacing an unoptimized image in an unused motion component.
-- Five form tests passed: validation, optional phone, matching Netlify static fields/honeypot, encoded submission, and failure handling. These are local tests; they are not live inbox delivery tests.
-- Local browser inspection covered 13 page/example URLs at 1363 CSS px and 454 CSS px (narrow layout via browser zoom). One cleanup-table overflow was corrected and retested. Mobile menu exposed the expected links. No broken loaded images or application console errors observed. This is responsive desktop-browser QA, not a physical-device test.
-- Pages expose one H1, skip link, labeled navigation and input fields. Full accessibility certification is not claimed.
-- Production HTTP smoke check passed: 13 page/example URLs, 37 distinct internal links/anchors, 12 linked assets, social image, sitemap, robots and the dedicated form definition; missing-page route returned 404.
-- Production dependencies audit reported zero known vulnerabilities.
-- No API keys or authentication secrets are required by the selected Netlify Forms approach. Forms remain gated off until configured and tested. No purchases or paid add-ons made. Agua Blue was not changed.
+## Verified launch behavior
 
-## Not completed / account access required
+- Production deployment succeeded on Netlify using standard Next.js 16.4.5 and its OpenNext adapter. Approved branding, landing page, pages and demonstrations preserved.
+- The purchased apex domain returns the Vendrick website over HTTPS with normal certificate validation.
+- HTTP redirects to HTTPS. The HTTPS www hostname redirects to the primary apex and preserves paths (verified with /services).
+- Public DNS returns apex A 75.2.60.5 and www CNAME vendrick-systems.netlify.app. Namecheap changes were made by the owner. The supplied screenshot retained Email Forwarding and its SPF record; no email DNS changes were made by the agent.
+- Production meta robots is index, follow; robots.txt allows crawling and references the canonical-domain sitemap.xml, which returns successfully.
+- Netlify Forms detection is enabled and vendrick-inquiry is registered. The first two test submissions were confirmed in the dashboard.
+- Inquiry notifications are saved for the owner's approved Netlify-member inbox. The public direct-contact address remains vendricksystems@gmail.com.
+- Final HTTPS production test VS-LIVE-FINAL-1109 returned Netlify acceptance and the form displayed its success state. No application console errors were observed in that final test.
+- Prior complete browser QA covered the pages/examples on desktop and narrow responsive widths (454 CSS px via browser zoom). A cleanup-table overflow was repaired. A physical-device test is not claimed.
+- Production build, TypeScript, lint and five form tests passed during preparation. Production dependency audit had no known vulnerabilities at that time.
+- No paid subscriptions or add-ons were activated. Agua Blue's website and deployment were not modified.
 
-| Item | Actual status |
-| --- | --- |
-| Netlify project and temporary URL | Netlify account sign-in succeeded; project import is waiting for GitHub / Google device approval |
-| Public deployment | Not deployed or verified |
-| Contact storage and Gmail delivery | Prepared in code; form detection and notification not configured, live workflow not tested |
-| Custom domain binding | Not configured |
-| WWW redirect | Rule prepared; not verified on a deployment |
-| HTTPS certificate | Not provisioned or verified |
-| Production search indexing | Disabled until launch verification |
+## Remaining verification
 
-## DNS observation
+Inbox receipt of the notification is not independently verified: the connected Gmail account is the company inbox, while the owner chose a different personal inbox for Netlify notifications. Check that recipient inbox (including Spam) for the final test identifier above. A successful POST confirms request acceptance, not email delivery.
 
-A public DNS-over-HTTPS lookup returned these records during this audit:
+## Managing the site
 
-- NS: `dns1.registrar-servers.com`, `dns2.registrar-servers.com` (Namecheap).
-- Apex A: `162.255.119.160` (not Netlify's documented external-DNS target).
-- No apex AAAA or CNAME answer.
-
-The execution environment's system DNS resolver could not resolve the domain; the above observation uses public DNS-over-HTTPS, not a verified HTTP response from the domain. No DNS settings were changed.
-
-After a Netlify project is created and tested, use Namecheap Advanced DNS:
-
-| Type | Host | Value | TTL |
-| --- | --- | --- | --- |
-| A | @ | 75.2.60.5 | Automatic |
-| CNAME | www | Exact assigned Netlify project hostname; not yet available | Automatic |
-
-Do not enter a guessed Netlify hostname. Remove only conflicting apex/www forwarding or address records, preserving email DNS and unrelated subdomains. Bind both hostnames in Netlify, set apex primary, verify any requested ownership TXT record, and wait for the SSL certificate before claiming HTTPS is ready.
-
-## Next action
-
-Netlify authentication succeeded. Complete Google’s device approval for the GitHub repository import in the pending secure browser sign-in flow. The account must be able to deploy the Vendrick GitHub repository. Netlify's current notification rules require `vendricksystems@gmail.com` to be an active team member address on non-enterprise plans. Do not purchase a team seat; resolve that requirement with a free account configuration if needed.
-
-Once access is available: create a separate project, deploy, enable form detection, configure Gmail notifications, enable the form flag and test actual stored submission plus inbox receipt, then connect DNS and verify HTTPS/redirects. Only then enable production indexing.
+- Push website changes to main to trigger the connected Netlify deployment.
+- Current deployed public flags: NEXT_PUBLIC_CONTACT_ENABLED=true and SITE_INDEXABLE=true. SITE_URL=https://vendricksystems.com is defined in netlify.toml. Preview contexts remain noindex.
+- Netlify Forms stores inquiries; review its Forms dashboard in addition to email.
+- Do not change email DNS or buy a separate SSL certificate. Netlify manages certificate renewal.
+- The Free hosting allowance is usage-limited. Check account usage before making many production deployments or enabling any paid feature.
+- README.md contains local installation, deployment and content-editing instructions. Earlier setup steps there describe how to recreate the configuration; this report describes the verified current state.
